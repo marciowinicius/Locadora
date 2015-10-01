@@ -76,9 +76,8 @@ procedure TfrmCadCliente.btnPesquisarClick(Sender: TObject);
 begin
   inherited;
   if qryMaster.State in [dsInsert, dsEdit] then
-    begin
       qryMaster.Cancel;
-    end;
+
     qryMaster.Close;
 
     qryMaster.SQL.Clear;

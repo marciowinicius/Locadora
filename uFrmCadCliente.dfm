@@ -1,20 +1,20 @@
 ﻿inherited frmCadCliente: TfrmCadCliente
   Caption = 'Cadastro Cliente'
   ClientHeight = 468
-  ClientWidth = 498
-  ExplicitWidth = 514
+  ClientWidth = 556
+  ExplicitWidth = 572
   ExplicitHeight = 507
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnlTopo: TPanel
-    Width = 498
+    Width = 556
     ExplicitWidth = 498
     inherited pnlTitulo: TPanel
-      Width = 496
+      Width = 554
       Caption = 'Cadastro Clientes'
       ExplicitWidth = 496
       inherited pnlFechar: TPanel
-        Left = 426
+        Left = 484
         ExplicitLeft = 426
         inherited btnFechar: TSpeedButton
           Top = 5
@@ -23,7 +23,7 @@
       end
     end
     inherited pnlPesquisa: TPanel
-      Width = 496
+      Width = 554
       ExplicitWidth = 496
       object lblPesCodigo: TLabel [1]
         Left = 6
@@ -40,7 +40,7 @@
         Caption = 'Nome :'
       end
       inherited pnlPes: TPanel
-        Left = 426
+        Left = 484
         TabOrder = 2
         ExplicitLeft = 426
         inherited btnPesquisar: TButton
@@ -63,18 +63,18 @@
       end
     end
     inherited grdPesquisa: TDBGrid
-      Width = 496
+      Width = 554
     end
   end
   inherited pnlBotoes: TPanel
-    Width = 498
+    Width = 556
     ExplicitWidth = 498
     inherited btnNovo: TSpeedButton
       ExplicitTop = -4
     end
   end
   inherited pnlDados: TPanel
-    Width = 498
+    Width = 556
     Height = 259
     ExplicitWidth = 498
     ExplicitHeight = 259
