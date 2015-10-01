@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="uDM.pas"/>
+    <File Path="uDM.dfm"/>
+    <File Path="uFrmCadClassificacao.pas"/>
+    <File Path="uFrmCadClassificacao.dfm"/>
+    <File Path="uFrmCadCliente.pas"/>
+    <File Path="uFrmCadCliente.dfm"/>
+    <File Path="uFrmCadGeneros.pas"/>
+    <File Path="uFrmCadGeneros.dfm"/>
+    <File Path="uFrmCadTipos.pas"/>
+    <File Path="uFrmCadTipos.dfm"/>
+    <File Path="uFrmMasterCadastro.pas"/>
+    <File Path="uFrmMasterCadastro.dfm"/>
+    <File Path="uFrmOutros.pas"/>
+    <File Path="uFrmOutros.dfm"/>
+    <File Path="uFrmPrincipal.pas"/>
+    <File Path="uFrmPrincipal.dfm"/>
+    <File Path="uFuncoes.pas"/>
+    <File Path="uFrmCadFilmes.pas"/>
+    <File Path="uFrmCadFilmes.dfm"/>
+  </ProjectSortOrder>
+	<Transactions>
+    <Transaction>2015/10/01 16:26:42.000.225,=C:\Users\Márcio\Documents\Embarcadero\Locadora\Unit1.pas</Transaction>
+    <Transaction>2015/10/01 16:29:57.000.312,C:\Users\Márcio\Documents\Embarcadero\Locadora\Unit1.dfm=C:\Users\Márcio\Documents\Embarcadero\Locadora\uFrmCadFilmes.dfm</Transaction>
+    <Transaction>2015/10/01 16:29:57.000.312,C:\Users\Márcio\Documents\Embarcadero\Locadora\Unit1.pas=C:\Users\Márcio\Documents\Embarcadero\Locadora\uFrmCadFilmes.pas</Transaction>
+  </Transactions>
+</BorlandProject>
