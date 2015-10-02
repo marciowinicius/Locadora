@@ -8,14 +8,14 @@
   TextHeight = 13
   inherited pnlTopo: TPanel
     Width = 556
-    ExplicitWidth = 498
+    ExplicitWidth = 556
     inherited pnlTitulo: TPanel
       Width = 554
       Caption = 'Cadastro Clientes'
-      ExplicitWidth = 496
+      ExplicitWidth = 554
       inherited pnlFechar: TPanel
         Left = 484
-        ExplicitLeft = 426
+        ExplicitLeft = 484
         inherited btnFechar: TSpeedButton
           Top = 5
           ExplicitTop = 5
@@ -24,7 +24,7 @@
     end
     inherited pnlPesquisa: TPanel
       Width = 554
-      ExplicitWidth = 496
+      ExplicitWidth = 554
       object lblPesCodigo: TLabel [1]
         Left = 6
         Top = 22
@@ -42,7 +42,7 @@
       inherited pnlPes: TPanel
         Left = 484
         TabOrder = 2
-        ExplicitLeft = 426
+        ExplicitLeft = 484
         inherited btnPesquisar: TButton
           OnClick = btnPesquisarClick
         end
@@ -68,7 +68,7 @@
   end
   inherited pnlBotoes: TPanel
     Width = 556
-    ExplicitWidth = 498
+    ExplicitWidth = 556
     inherited btnNovo: TSpeedButton
       ExplicitTop = -4
     end
@@ -76,7 +76,7 @@
   inherited pnlDados: TPanel
     Width = 556
     Height = 259
-    ExplicitWidth = 498
+    ExplicitWidth = 556
     ExplicitHeight = 259
     object lblCodigo: TLabel
       Left = 7
@@ -116,9 +116,22 @@
     object lblIdTitular: TLabel
       Left = 7
       Top = 142
-      Width = 88
+      Width = 37
       Height = 13
-      Caption = 'C'#243'digo do Titular :'
+      Caption = 'Titular :'
+    end
+    object lblMsg: TLabel
+      Left = 266
+      Top = 142
+      Width = 163
+      Height = 13
+      Caption = '(Pressione '#39'Delete'#39' para remover) '
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
     end
     object edtCodigo: TDBEdit
       Left = 115
@@ -167,14 +180,18 @@
       DataSource = dsMaster
       TabOrder = 4
     end
-    object edtCodTitular: TDBEdit
+    object lcbTitular: TDBLookupComboBox
       Left = 115
       Top = 140
-      Width = 121
+      Width = 145
       Height = 21
       DataField = 'ID_Titular'
       DataSource = dsMaster
-      MaxLength = 11
+      Enabled = False
+      KeyField = 'id'
+      ListField = 'nome'
+      ListSource = dsTitular
+      NullValueKey = 46
       TabOrder = 5
     end
   end
@@ -216,5 +233,17 @@
       FieldName = 'ID_Titular'
       Origin = 'ID_Titular'
     end
+  end
+  object qryTitular: TFDQuery
+    Connection = dm.conMysql
+    SQL.Strings = (
+      'select id, nome from cliente where id_titular is null')
+    Left = 400
+    Top = 96
+  end
+  object dsTitular: TDataSource
+    DataSet = qryTitular
+    Left = 448
+    Top = 96
   end
 end

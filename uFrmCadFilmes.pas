@@ -44,6 +44,11 @@ type
     lblDataLancamento: TLabel;
     lblTipo: TLabel;
     lcbClassificacao: TDBLookupComboBox;
+    qryClassificacao: TFDQuery;
+    dsClassificacao: TDataSource;
+    lcbTipo: TDBLookupComboBox;
+    qryTipo: TFDQuery;
+    dsTipo: TDataSource;
     procedure btnPesquisarClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
@@ -70,18 +75,24 @@ begin
   inherited;
   edtNome.SetFocus;
   lcbGenero.Enabled := True;
+  lcbClassificacao.Enabled := True;
+  lcbTipo.Enabled := True;
 end;
 
 procedure TfrmCadFilmes.btnCancelarClick(Sender: TObject);
 begin
   inherited;
   lcbGenero.Enabled := False;
+  lcbClassificacao.Enabled := False;
+  lcbTipo.Enabled := False;
 end;
 
 procedure TfrmCadFilmes.btnExcluirClick(Sender: TObject);
 begin
   inherited;
   lcbGenero.Enabled := False;
+  lcbClassificacao.Enabled := False;
+  lcbTipo.Enabled := False;
 end;
 
 procedure TfrmCadFilmes.btnFecharClick(Sender: TObject);
@@ -95,6 +106,8 @@ procedure TfrmCadFilmes.btnGravarClick(Sender: TObject);
 begin
   inherited;
   lcbGenero.Enabled := False;
+  lcbClassificacao.Enabled := False;
+  lcbTipo.Enabled := False;
 end;
 
 procedure TfrmCadFilmes.btnNovoClick(Sender: TObject);
@@ -102,6 +115,8 @@ begin
   inherited;
   edtNome.SetFocus;
   lcbGenero.Enabled := True;
+  lcbClassificacao.Enabled := True;
+  lcbTipo.Enabled := True;
 end;
 
 procedure TfrmCadFilmes.btnPesquisarClick(Sender: TObject);
@@ -151,6 +166,8 @@ procedure TfrmCadFilmes.FormShow(Sender: TObject);
 begin
   inherited;
   qryGeneros.Open;
+  qryClassificacao.Open;
+  qryTipo.Open;
 end;
 
 end.

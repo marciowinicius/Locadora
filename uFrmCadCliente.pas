@@ -9,7 +9,7 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Vcl.StdCtrls, FireDAC.Comp.DataSet,
   Vcl.Mask, Vcl.DBCtrls, FireDAC.Comp.Client, Vcl.Grids, Vcl.DBGrids,
-  Vcl.Buttons, Vcl.ExtCtrls;
+  Vcl.Buttons, Vcl.ExtCtrls, uDM, System.DateUtils;
 
 type
   TfrmCadCliente = class(TfrmMasterCadastro)
@@ -24,7 +24,6 @@ type
     edtCPF: TDBEdit;
     edtDataNascimento: TDBEdit;
     edtEndereco: TDBEdit;
-    edtCodTitular: TDBEdit;
     fdtncfldMasterid: TFDAutoIncField;
     strngfldMasterNome: TStringField;
     strngfldMasterCPF: TStringField;
@@ -35,10 +34,19 @@ type
     lblPesNome: TLabel;
     edtPesCodigo: TEdit;
     edtPesNome: TEdit;
+    lcbTitular: TDBLookupComboBox;
+    qryTitular: TFDQuery;
+    dsTitular: TDataSource;
+    lblMsg: TLabel;
     procedure btnPesquisarClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure btnTesteClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -57,6 +65,19 @@ procedure TfrmCadCliente.btnAlterarClick(Sender: TObject);
 begin
   inherited;
   edtNome.SetFocus;
+  lcbTitular.Enabled := True;
+end;
+
+procedure TfrmCadCliente.btnCancelarClick(Sender: TObject);
+begin
+  inherited;
+  lcbTitular.Enabled := False;
+end;
+
+procedure TfrmCadCliente.btnExcluirClick(Sender: TObject);
+begin
+  inherited;
+  lcbTitular.Enabled := False;
 end;
 
 procedure TfrmCadCliente.btnFecharClick(Sender: TObject);
@@ -66,17 +87,58 @@ begin
   Close;
 end;
 
+procedure TfrmCadCliente.btnGravarClick(Sender: TObject);
+begin
+  Perform(WM_NEXTDLGCTL,0,0);
+  if lcbTitular.Text = emptyStr then
+  begin
+    if edtCPF.Text = emptyStr then
+    begin
+      Application.MessageBox('Para clientes titulares é necessário informar o CPF.',
+        '', MB_OK + MB_ICONWARNING);
+      edtCPF.SetFocus;
+      Exit;
+    end;
+
+    if edtEndereco.Text = EmptyStr then
+    begin
+    Application.MessageBox('Para clientes titulares é necessário informar o endereço.',
+      '', MB_OK + MB_ICONWARNING);
+    edtEndereco.SetFocus;
+    Exit;
+    end;
+
+    if YearsBetween(qryMaster.FieldByName('data_nascimento').AsDateTime, now) < 18 then
+    begin
+      Application.MessageBox('Para clientes titulares é necessário ter mais de 18 anos.',
+        '', MB_OK + MB_ICONWARNING);
+      edtDataNascimento.SetFocus;
+      Exit;
+    end;
+
+
+
+
+  end;
+
+  inherited;
+  lcbTitular.Enabled := False;
+end;
+
 procedure TfrmCadCliente.btnNovoClick(Sender: TObject);
 begin
   inherited;
   edtNome.SetFocus;
+  lcbTitular.Enabled := True;
 end;
 
 procedure TfrmCadCliente.btnPesquisarClick(Sender: TObject);
 begin
   inherited;
   if qryMaster.State in [dsInsert, dsEdit] then
+  begin
       qryMaster.Cancel;
+  end;
 
     qryMaster.Close;
 
@@ -97,6 +159,18 @@ begin
   edtPesNome.Clear;
   edtPesCodigo.Clear;
   qryMaster.Open;
+end;
+
+procedure TfrmCadCliente.btnTesteClick(Sender: TObject);
+begin
+  inherited;
+  qryMaster.FieldByName('nome').AsString := 'teste _ teste';
+end;
+
+procedure TfrmCadCliente.FormShow(Sender: TObject);
+begin
+  inherited;
+  qryTitular.Open;
 end;
 
 end.

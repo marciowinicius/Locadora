@@ -8,19 +8,19 @@ inherited frmCadFilmes: TfrmCadFilmes
   TextHeight = 13
   inherited pnlTopo: TPanel
     Width = 776
-    ExplicitWidth = 577
+    ExplicitWidth = 776
     inherited pnlTitulo: TPanel
       Width = 774
       Caption = 'Cadastro Filmes'
-      ExplicitWidth = 575
+      ExplicitWidth = 774
       inherited pnlFechar: TPanel
         Left = 704
-        ExplicitLeft = 505
+        ExplicitLeft = 704
       end
     end
     inherited pnlPesquisa: TPanel
       Width = 774
-      ExplicitWidth = 575
+      ExplicitWidth = 774
       object lblPesCodigo: TLabel [1]
         Left = 6
         Top = 22
@@ -38,7 +38,7 @@ inherited frmCadFilmes: TfrmCadFilmes
       inherited pnlPes: TPanel
         Left = 704
         TabOrder = 2
-        ExplicitLeft = 505
+        ExplicitLeft = 704
         inherited btnPesquisar: TButton
           OnClick = btnPesquisarClick
         end
@@ -120,14 +120,18 @@ inherited frmCadFilmes: TfrmCadFilmes
   end
   inherited pnlBotoes: TPanel
     Width = 776
-    ExplicitWidth = 577
+    ExplicitWidth = 776
+    inherited btnAlterar: TSpeedButton
+      ExplicitLeft = 52
+      ExplicitTop = -4
+      ExplicitHeight = 38
+    end
   end
   inherited pnlDados: TPanel
     Width = 776
     Height = 242
-    ExplicitTop = 214
     ExplicitWidth = 776
-    ExplicitHeight = 206
+    ExplicitHeight = 242
     object lblCodigo: TLabel
       Left = 16
       Top = 16
@@ -172,7 +176,7 @@ inherited frmCadFilmes: TfrmCadFilmes
     end
     object lblTipo: TLabel
       Left = 16
-      Top = 112
+      Top = 114
       Width = 27
       Height = 13
       Caption = 'Tipo :'
@@ -234,8 +238,26 @@ inherited frmCadFilmes: TfrmCadFilmes
       Top = 62
       Width = 145
       Height = 21
+      DataField = 'id_classificacao'
+      DataSource = dsMaster
       Enabled = False
+      KeyField = 'id'
+      ListField = 'classificacao'
+      ListSource = dsClassificacao
       TabOrder = 5
+    end
+    object lcbTipo: TDBLookupComboBox
+      Left = 144
+      Top = 110
+      Width = 145
+      Height = 21
+      DataField = 'id_tipo'
+      DataSource = dsMaster
+      Enabled = False
+      KeyField = 'id'
+      ListField = 'tipo'
+      ListSource = dsTipo
+      TabOrder = 6
     end
   end
   inherited qryMaster: TFDQuery
@@ -335,6 +357,7 @@ inherited frmCadFilmes: TfrmCadFilmes
       FieldName = 'id'
       Origin = 'ID'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object strngfldGenerosgenero: TStringField
       AutoGenerateValue = arDefault
@@ -347,5 +370,33 @@ inherited frmCadFilmes: TfrmCadFilmes
     DataSet = qryGeneros
     Left = 352
     Top = 100
+  end
+  object qryClassificacao: TFDQuery
+    Connection = dm.conMysql
+    SQL.Strings = (
+      'select id,'
+      '       classificacao'
+      'from   classificacao')
+    Left = 432
+    Top = 100
+  end
+  object dsClassificacao: TDataSource
+    DataSet = qryClassificacao
+    Left = 504
+    Top = 100
+  end
+  object qryTipo: TFDQuery
+    Connection = dm.conMysql
+    SQL.Strings = (
+      'select id,'
+      '       tipo'
+      'from tipos')
+    Left = 584
+    Top = 101
+  end
+  object dsTipo: TDataSource
+    DataSet = qryTipo
+    Left = 632
+    Top = 104
   end
 end
